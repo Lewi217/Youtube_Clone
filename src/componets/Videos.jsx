@@ -1,21 +1,19 @@
-import { Stack, Box } from '@mui/material';
+import React from 'react';
+import { Grid } from '@mui/material';
+import VideoCard from './VideoCard';
 
-import { VideoCard, ChannelCard } from './';
 
 const Videos = ({ videos }) => {
-  
   return (
-    <Stack directional="row" flexWrap="wrap"
-    justifyContent="start" gap={2}>
-      {videos.map((item, idx) => (
-        <Box key={idx}>
-          {item.id.videoId && <VideoCard video={item} />}
-          {item.id.ChannelId && <ChannelCard channelDetail=
-          {item} />}
-        </Box>
+    
+    <Grid container spacing={2}>
+      {videos.map((video, index) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
+          <VideoCard video={video} />
+        </Grid>
       ))}
-    </Stack>
-  )
+    </Grid>
+  );
 }
 
-export default Videos
+export default Videos;
