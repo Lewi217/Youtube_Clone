@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 import { Typography, Box, Stack } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-import { Videos, Loader } from "./";
+import { Videos } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 
 const VideoDetail = () => {
@@ -20,12 +20,12 @@ const VideoDetail = () => {
       .then((data) => setVideos(data.items))
   }, [id]);
 
-  if(!videoDetail?.snippet) return <Loader />;
+  if(!videoDetail?.snippet) return 'Loading...';
 
   const { snippet: { title, channelId, channelTitle }, statistics: { viewCount, likeCount } } = videoDetail;
 
   return (
-    <Box minHeight="95vh">
+    <Box minHeight="95vh" sx={{ backgroundColor: "#000" }}>
       <Stack direction={{ xs: "column", md: "row" }}>
         <Box flex={1}>
           <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
@@ -41,10 +41,10 @@ const VideoDetail = () => {
                 </Typography>
               </Link>
               <Stack direction="row" gap="20px" alignItems="center">
-                <Typography variant="body1" sx={{ opacity: 0.7 }}>
+                <Typography variant="body1" sx={{ opacity: 0.7, color: "#fff" }}>
                   {parseInt(viewCount).toLocaleString()} views
                 </Typography>
-                <Typography variant="body1" sx={{ opacity: 0.7 }}>
+                <Typography variant="body1" sx={{ opacity: 0.7, color: "#fff" }}>
                   {parseInt(likeCount).toLocaleString()} likes
                 </Typography>
               </Stack>
